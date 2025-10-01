@@ -1,6 +1,6 @@
 Author: Asgard
-Instagram: @3.9.9.6
-Telegram: @asgard_0
+| Instagram: @3.9.9.6
+| Telegram: @asgard_0
 
 
 # 🖼️ Files Preview: PHP/MySQL Product Catalog and File Manager
