@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Pannel</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+
+    <form action="add.php"  method="post" enctype="multipart/form-data">
+
+    <div id="left">
+        <input type="file" name="img[]" id="fileInput" multiple style="display: none;">
+        <div id="preview">
+            <h1 style="position: absolute; margin-left: 50%; margin-top: 12.5%; color: rgb(48, 48, 48);">Preview Images (Minimum: 2)</h1>
+            <label for="fileInput">
+                <input type="hidden" name="" id="post_preview">
+                <input type="hidden" name="preview" id="post_preview2">
+
+                <div class="addImg" onclick="updateFileNames()">+</div>
+            </label>
+        </div>
+
+        <input type="file" name="img2[]" id="fileInput2" multiple style="display: none;">
+        <div id="preview2">
+            <h1 style="position: absolute; margin-left: 50%; margin-top: 12.5%; color: rgb(48, 48, 48);">All Images (Minimum: 1)</h1>
+            <label for="fileInput2">
+                <input type="hidden" name="" id="post_posts">
+                <input type="hidden" name="posts" id="post_posts2">
+
+                <div class="addImg" onclick="updateFileNames2()">+</div>
+            </label>
+        </div>
+    </div>
+
+    <div id="right">
+            <input type="file" name="img5" id="file" style="display: none;">
+
+            <label for="file">
+                <div id="fakefile"></div>
+            </label>
+
+            <select id="selectbox1" name="type">
+                <option value="none">Kind &hellip;</option>
+                <option value="pack">Pack</option>
+                <option value="tool">Texture</option>
+                <option value="background">Backgroound</option>
+                <option value="other">other</option>
+            </select>
+
+            <input type="text" name="name" id="name" class="texts" placeholder="Title" required>
+
+            <span id="check-label"><label style="cursor: pointer;" for="ui-checkbox">Free</label></span> <input name="free" type="checkbox" class="ui-checkbox" id="ui-checkbox" value="free"> 
+            
+
+            <textarea name="des" id="des" cols="30" rows="10" oninput="autoResize(this)" placeholder="Description"></textarea>
+
+            <button type="submit" name="submit" id="submit" onclick="updateFileNames2()">Post</button>
+        </div>
+    </form>
+
+    <script>
+
+        function autoResize(textarea) {
+            textarea.style.height = '130px'; // Reset height to auto
+            textarea.style.height = textarea.scrollHeight + 'px'; // Set height to scrollHeight
+        }
+
+    function handleFileInputChange() {
+      var input = document.getElementById('file');
+      var preview = document.getElementById('fakefile');
+      
+      // Check if a file is selected
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        // Set up the reader to load the image
+        reader.onload = function (e) {
+          preview.style.backgroundImage = 'url(' + e.target.result + ')';
+          preview.style.backgroundSize = 'cover';
+
+        };
+
+        // Read the image file as a data URL
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    // Attach the handleFileInputChange function to the change event of the file input
+    document.getElementById('file').addEventListener('change', handleFileInputChange);
+
+
+
+var fileNames = {}; // Use an object to store file names
+var filesVariable = '';
+
+document.getElementById('fileInput').addEventListener('change', function() {
+    var files = this.files;
+
+    for (var i = 0; i < files.length; i++) {
+        var file = files[i];
+
+        if (file.type.startsWith('image/')) {
+            addImagePreview(file);
+        } else if (file.type.startsWith('video/')) {
+            addVideoPreview(file);
+        }
+    }
+});
+
+function addImagePreview(file) {
+    var reader = new FileReader();
+
+    reader.onload = function(event) {
+        var div = document.createElement('div');
+        div.classList.add('preview-image');
+        div.style.backgroundImage = 'url(' + event.target.result + ')';
+
+        var deleteButton = document.createElement('button');
+        var name = document.createElement('h4');
+        name.classList.add('file-name');  
+        name.innerText = file.name;
+
+        deleteButton.innerHTML = '';
+        deleteButton.classList.add('delete-button'); // Add delete-button class
+        deleteButton.addEventListener('click', function() {
+            var fileName = div.getAttribute('data-file-name');
+            delete fileNames[fileName]; // Remove the file name from the object
+            updateFileNames();
+            div.remove();
+        });
+        div.appendChild(deleteButton);
+        div.appendChild(name);
+
+        div.setAttribute('data-file-name', file.name);
+        document.getElementById('preview').appendChild(div);
+
+        fileNames[file.name] = true; // Store the file name in the object
+        updateFileNames();
+    };
+
+    reader.readAsDataURL(file);
+}
+
+function addVideoPreview(file) {
+    var video = document.createElement('video');
+    video.autoplay = true;
+    video.controls = false;
+    video.src = URL.createObjectURL(file);
+    video.classList.add('preview-video');
+
+    var deleteButton = document.createElement('button');
+
+    var name = document.createElement('h4');
+    name.classList.add('file-name');  
+    name.innerText = file.name;
+
+    deleteButton.innerHTML = '';
+    deleteButton.classList.add('delete-button'); // Add delete-button class
+    deleteButton.addEventListener('click', function() {
+        var fileName = video.getAttribute('data-file-name');
+        delete fileNames[fileName]; // Remove the file name from the object
+        updateFileNames();
+        video.parentNode.remove(); // Remove the parent element (the .preview-video-container)
+    });
+
+    
+
+    video.setAttribute('data-file-name', file.name);
+    var div = document.createElement('div');
+    div.classList.add('preview-video-container');
+    div.appendChild(video);
+    div.appendChild(name);
+    div.appendChild(deleteButton);
+    document.getElementById('preview').appendChild(div);
+
+    fileNames[file.name] = true; // Store the file name in the object
+    updateFileNames();
+}
+
+function updateFileNames() {
+    // Convert the object keys to an array of file names
+    fileNamesArray = Object.keys(fileNames);
+    filesVariable = fileNamesArray.join(', ');
+    console.log(filesVariable);
+    document.getElementById('post_posts2').value=filesVariable;
+    var input = document.getElementById('post_posts');
+    input.setAttribute('name', 'img['+filesVariable+']');
+
+}
+
+
+
+
+
+
+var fileNames2 = {}; // Use an object to store file names
+var filesVariable2 = '';
+
+document.getElementById('fileInput2').addEventListener('change', function() {
+    var files = this.files;
+
+    for (var i = 0; i < files.length; i++) {
+        var file = files[i];
+
+        if (file.type.startsWith('image/')) {
+            addImagePreview2(file);
+        } else if (file.type.startsWith('video/')) {
+            addVideoPreview2(file);
+        }
+    }
+});
+
+function addImagePreview2(file) {
+    var reader = new FileReader();
+
+    reader.onload = function(event) {
+        var div = document.createElement('div');
+        div.classList.add('preview-image');
+        div.style.backgroundImage = 'url(' + event.target.result + ')';
+
+        var name = document.createElement('h4');
+        name.classList.add('file-name');  
+        name.innerText = file.name;
+
+        var deleteButton = document.createElement('button');
+        deleteButton.innerHTML = '';
+        deleteButton.classList.add('delete-button'); // Add delete-button class
+        deleteButton.addEventListener('click', function() {
+            var fileName = div.getAttribute('data-file-name');
+            delete fileNames2[fileName]; // Remove the file name from the object
+            updateFileNames();
+            div.remove();
+        });
+        div.appendChild(deleteButton);
+        div.appendChild(name);
+
+        div.setAttribute('data-file-name', file.name);
+        document.getElementById('preview2').appendChild(div);
+
+        fileNames2[file.name] = true; // Store the file name in the object
+        updateFileNames();
+    };
+
+    reader.readAsDataURL(file);
+}
+
+function addVideoPreview2(file) {
+    var video = document.createElement('video');
+    video.autoplay = true;
+    video.controls = false;
+    video.src = URL.createObjectURL(file);
+    video.classList.add('preview-video');
+
+    var deleteButton = document.createElement('button');
+
+    var name = document.createElement('h4');
+    name.classList.add('file-name');  
+    name.innerText = file.name;
+
+    deleteButton.innerHTML = '';
+    deleteButton.classList.add('delete-button'); // Add delete-button class
+    deleteButton.addEventListener('click', function() {
+        var fileName = video.getAttribute('data-file-name');
+        delete fileNames2[fileName]; // Remove the file name from the object
+        updateFileNames2();
+        video.parentNode.remove(); // Remove the parent element (the .preview-video-container)
+    });
+
+    video.setAttribute('data-file-name', file.name);
+    var div = document.createElement('div');
+    div.classList.add('preview-video-container');
+    div.appendChild(video);
+    div.appendChild(name);
+    div.appendChild(deleteButton);
+    document.getElementById('preview2').appendChild(div);
+
+    fileNames2[file.name] = true; // Store the file name in the object
+    updateFileNames2();
+}
+
+function updateFileNames2() {
+    // Convert the object keys to an array of file names
+    fileNamesArray = Object.keys(fileNames2);
+    filesVariable2 = fileNamesArray.join(', ');
+    console.log(filesVariable2);
+    document.getElementById('post_preview2').value=filesVariable2;
+    var input = document.getElementById('post_preview');
+    input.setAttribute('name', 'img['+filesVariable+']');
+    updateFileNames()
+}
+
+
+
+    </script>
+</body>
+</html>
