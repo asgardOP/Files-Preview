@@ -1,3 +1,8 @@
+Author: Asgard
+Instagram: @3.9.9.6
+Telegram: @asgard_0
+
+
 # 🖼️ Files Preview: PHP/MySQL Product Catalog and File Manager
 
 **Files Preview** is a simple, lightweight web application built with **PHP** and **MySQL** that functions as a product or digital item catalog and manager. It provides a simple administration interface for uploading product details and associated media, and a public-facing site for users to browse and download file packages.
