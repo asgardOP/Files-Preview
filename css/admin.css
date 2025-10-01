@@ -1,0 +1,462 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap');
+    
+    *{
+        padding: 0;
+        margin: 0;
+    }
+
+    body{
+        background-color: rgb(15, 15, 15);
+        font-family: "Cairo", sans-serif;
+        font-optical-sizing: auto;
+    }
+
+    ::placeholder{
+        font-family: "Cairo", sans-serif;
+        font-optical-sizing: auto;
+        padding-right: 20px;
+        color: rgba(255, 255, 255, 0.685);
+        font-size: 17px;
+    }
+
+    ::-webkit-scrollbar{
+        background-color: rgb(255, 255, 255);
+        width: 10px;
+        border-radius: 10px;
+        position: absolute;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgb(192, 157, 209); 
+      border-radius: 10px;
+    }
+
+    #right{
+        position: fixed;
+        right: 0px;
+        width: 500px;
+        height: 100vh;
+        background-color: rgb(10, 10, 10);
+        display: block;
+        overflow-y: auto;
+        border-left: 1px solid rgba(255, 255, 255, 0.212);
+    }
+
+    #left{
+        position: fixed;
+        left: 0px;
+        width: 74%;
+        height: 100vh;
+        background-color: rgb(20, 19, 19);
+    }
+
+    #fakefile{
+        width: 80%;
+        height: 200px;
+        background-color: rgba(255, 0, 0, 0);
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 25px;
+        border-radius: 5px;
+        border: 1px solid rgba(255, 255, 255, 0.685);
+        position: relative;
+        background-image: url('https://www.shutterstock.com/image-vector/transparent-pattern-background-simulation-alpha-600nw-2253147461.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    #fakefile::before{
+        content: '+';
+        position: absolute;
+        top: -10px;
+        left: 0px;
+        width: 100%;
+        height: 220px;
+        background-color: rgba(0, 0, 0, 0.527);
+        border-radius: 5px;
+        color: white;
+        font-size: 40px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: .1s;
+    }
+
+    #fakefile:hover::before{
+        opacity: 1;
+    }
+
+    .texts{
+        width: 76%;
+        height: 60px;
+        background-color: rgba(122, 104, 146, 0.473);
+        position: relative;
+        right: -47px;
+        margin-top: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.151);
+        border-radius: 5px;
+        text-align: left;
+        padding-left: 20px;
+        font-size: 17px;
+        color: white;
+        font-family: "Cairo", sans-serif;
+        font-optical-sizing: auto;
+        transition: .1s;
+    }
+    
+    .texts:hover{
+        outline: 3px solid rgba(202, 67, 255, 0.479);
+        outline-offset: 5px;
+    }
+
+    .texts:focus{
+        outline: 3px solid rgba(202, 67, 255, 0.479);
+        outline-offset: 5px;
+        box-shadow: 0px 0px 20px rgba(202, 67, 255, 0.479);
+    }
+
+    #selectbox1{
+        background-color: rgb(255, 255, 255);
+        border: none;
+        width: 80%;
+        height: 60px;
+        position: relative;
+        right: -47px;
+        margin-top: 30px;
+        color: black;
+        font-family: "Cairo", sans-serif;
+        font-optical-sizing: auto;
+        text-align: center;
+        border-radius: 50px;
+        font-size: 17px;
+        cursor: pointer;
+        transition: .1s;
+    }
+
+    #selectbox1:hover{
+        opacity: .8;
+    }
+
+    #selectbox1 option{
+        background-color: rgb(255, 255, 255);
+        border-radius: 0px;
+        color: rgb(0, 0, 0);
+        transition: 1s;
+    }
+
+    #selectbox1 option:hover{
+        background-color: purple;
+    }
+
+    input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+         -webkit-appearance: none;
+      }
+
+    .ui-checkbox {
+      --primary-color: #8e16ff;
+      --secondary-color: #fff;
+      --primary-hover-color: #4096ff;
+      /* checkbox */
+      --checkbox-diameter: 25px;
+      --checkbox-border-radius: 5px;
+      --checkbox-border-color: #d9d9d9;
+      --checkbox-border-width: 1px;
+      --checkbox-border-style: solid;
+      /* checkmark */
+      --checkmark-size: 1.5;
+    }
+    
+    .ui-checkbox, 
+    .ui-checkbox *, 
+    .ui-checkbox *::before, 
+    .ui-checkbox *::after {
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+    
+    .ui-checkbox {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      width: var(--checkbox-diameter);
+      height: var(--checkbox-diameter);
+      border-radius: var(--checkbox-border-radius);
+      background: var(--secondary-color);
+      border: var(--checkbox-border-width) var(--checkbox-border-style) var(--checkbox-border-color);
+      -webkit-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      transition: all 0.3s;
+      cursor: pointer;
+      position: relative;
+      top: 80px;
+      right: -18px;
+    }
+    
+    .ui-checkbox::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      -webkit-box-shadow: 0 0 0 calc(var(--checkbox-diameter) / 2.5) var(--primary-color);
+      box-shadow: 0 0 0 calc(var(--checkbox-diameter) / 2.5) var(--primary-color);
+      border-radius: inherit;
+      opacity: 0;
+      -webkit-transition: all 0.5s cubic-bezier(0.12, 0.4, 0.29, 1.46);
+      -o-transition: all 0.5s cubic-bezier(0.12, 0.4, 0.29, 1.46);
+      transition: all 0.5s cubic-bezier(0.12, 0.4, 0.29, 1.46);
+    }
+    
+    .ui-checkbox::before {
+      top: 40%;
+      left: 50%;
+      content: "";
+      position: absolute;
+      width: 4px;
+      height: 7px;
+      border-right: 2px solid var(--secondary-color);
+      border-bottom: 2px solid var(--secondary-color);
+      -webkit-transform: translate(-50%, -50%) rotate(45deg) scale(0);
+      -ms-transform: translate(-50%, -50%) rotate(45deg) scale(0);
+      transform: translate(-50%, -50%) rotate(45deg) scale(0);
+      opacity: 0;
+      -webkit-transition: all 0.1s cubic-bezier(0.71, -0.46, 0.88, 0.6),opacity 0.1s;
+      -o-transition: all 0.1s cubic-bezier(0.71, -0.46, 0.88, 0.6),opacity 0.1s;
+      transition: all 0.1s cubic-bezier(0.71, -0.46, 0.88, 0.6),opacity 0.1s;
+    }
+    
+    /* actions */
+    
+    .ui-checkbox:hover {
+      border-color: var(--primary-color);
+    }
+    
+    .ui-checkbox:checked {
+      background: var(--primary-color);
+      border-color: transparent;
+    }
+    
+    .ui-checkbox:checked::before {
+      opacity: 1;
+      -webkit-transform: translate(-50%, -50%) rotate(45deg) scale(var(--checkmark-size));
+      -ms-transform: translate(-50%, -50%) rotate(45deg) scale(var(--checkmark-size));
+      transform: translate(-50%, -50%) rotate(45deg) scale(var(--checkmark-size));
+      -webkit-transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
+      -o-transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
+      transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
+    }
+    
+    .ui-checkbox:active:not(:checked)::after {
+      -webkit-transition: none;
+      -o-transition: none;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      transition: none;
+      opacity: 1;
+    }
+
+    #check-label{
+        position: absolute;
+        color: white;
+        top: 435px;
+        right: 90px;
+        font-family: "Cairo", sans-serif;
+        font-optical-sizing: auto;
+    }
+
+
+    #des{
+        position: relative;
+        min-width: 80%;
+        max-width: 80%;
+        height: 130px;
+        right: -39px;
+        border-radius: 5px;
+        margin-top: 85px;
+        background-color: rgba(122, 104, 146, 0.473);
+        border: 1px solid rgba(255, 255, 255, 0.26);
+        text-align: left;
+        padding-left: 10px;
+        padding-top: 10px;
+        font-size: 17px;
+        color: white;
+        font-family: "Cairo", sans-serif;
+        font-optical-sizing: auto;
+    }
+
+    #des:hover{
+        outline: 3px solid rgba(202, 67, 255, 0.479);
+        outline-offset: 5px;
+    }
+
+    .texts:focus{
+        outline: 3px solid rgba(202, 67, 255, 0.479);
+        outline-offset: 5px;
+        box-shadow: 0px 0px 20px rgba(202, 67, 255, 0.479);
+    }
+
+    #submit{
+        width: 82.5%;
+        height: 70px;
+        border: none;
+        position: relative;
+        right: -45px;
+        margin-top: 30px;
+        border-radius: 45px;
+        font-family: "Cairo", sans-serif;
+        font-size: 20px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: .1s;
+    }
+
+    #submit:hover{
+        opacity: .5;
+    }
+
+    #submit:active{
+        transform: scale(0.95);
+    }
+
+    #preview {
+        display: flex;
+        flex-wrap: wrap;
+        height: 45vh;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.151);
+        overflow-y: auto;
+        position: relative;
+    }
+
+    #preview2 {
+        display: flex;
+        flex-wrap: wrap;
+        height: 55vh;
+        overflow-y: auto;
+        position: relative;
+    }
+
+    .preview-image {
+        width: 200px; /* تحديد عرض الصور */
+        height: 200px; /* تحديد ارتفاع الصور */
+        margin: 10px; /* تحديد الهوامش بين الصور */
+        border-radius: 5px; /* تحديد زوايا مستديرة للصور */
+        background-size: cover; /* جعل الصورة تمتد لتغطية كل العنصر */
+        background-position: center; /* تحديد موضع بدء الصورة في العنصر */
+        position: relative;
+        box-shadow: 0px 5px 10px rgb(0, 0, 0);
+    }
+
+    .addImg{
+        width: 200px;
+        height: 200px;
+        background-color: rgb(255, 255, 255);
+        position: relative;
+        left: 10px;
+        margin-right: 15px;
+        top: 10px;
+        color: white;
+        border-radius: 10px;
+        border: 2px dashed rgb(0, 0, 0);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: 35px;
+        cursor: pointer;
+        transition: .1s;
+        color: black;
+    }
+
+    .addImg:hover{
+        opacity: .8;
+    }
+
+    .delete-button{
+        width: 70px;
+        height: 70px;
+        border: none;
+        border-bottom-right-radius: 100px;
+        border-top-left-radius: 5px;
+        background-image: url('https://cdn-icons-png.flaticon.com/512/6861/6861362.png');
+        background-color: transparent;
+        background-position: 15px 15px;
+        background-size: 40%;
+        background-repeat: no-repeat;
+        background-color: rgba(255, 255, 255, 0);
+        opacity: 0;
+        cursor: pointer;
+        left: 0px;
+        transition: .0s;
+        position: absolute;
+        z-index: 99;
+    }
+
+    .delete-button:hover{
+        background-color: rgba(255, 55, 55, 0.774);
+    }
+
+    .preview-image:hover .delete-button{
+        opacity: 1;
+    }
+
+    .preview-video-container:hover .delete-button{
+        opacity: 1;
+    }
+
+    .preview-video {
+        width: 200px; /* تحديد عرض الصور */
+        height: 200px; /* تحديد ارتفاع الصور */
+        margin: 10px; /* تحديد الهوامش بين الصور */
+        border-radius: 5px; /* تحديد زوايا مستديرة للصور */
+        background-size: cover; /* جعل الصورة تمتد لتغطية كل العنصر */
+        background-position: center; /* تحديد موضع بدء الصورة في العنصر */
+        position: relative;
+        box-shadow: 0px 5px 10px rgb(0, 0, 0);
+    }
+
+    .preview-video-container .delete-button{
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+    
+    .preview-video-container{
+        margin-right: 5px;
+        width: fit-content; /* تحديد عرض الصور */
+        height: fit-content;
+        position: relative;
+    }
+
+    .file-name{
+        color: rgb(255, 255, 255);
+        position: absolute;
+        font-size: 15px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        bottom: 0px;
+        text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.473);
+        width: 100%;
+        height: fit-content;
+        opacity: .7;
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        padding-left: 5px;
+        padding-bottom: 5px;
+        overflow: hidden;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+
+    .preview-image:hover .file-name{
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0), black, black);
+        opacity: 1;
+    }
+
+    .preview-video-container:hover .file-name{
+        background-color: black;
+        opacity: 1;
+    }
