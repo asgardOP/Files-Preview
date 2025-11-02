@@ -9,6 +9,9 @@ Author: Asgard
 
 This project is ideal for showcasing digital assets where multiple files need to be neatly organized, previewed, and then downloaded as a package.
 
+<img width="1920" height="911" alt="image" src="https://github.com/user-attachments/assets/098450a9-97cb-42cb-a509-8d58b6b28a6c" />
+
+
 ## ✨ Features
 
 * **Product Management:** Add new products with a name, description, and status (e.g., free/paid) via the simple admin panel (`admin.html` and `add.php`).
