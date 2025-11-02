@@ -9,15 +9,21 @@ Author: Asgard
 
 This project is ideal for showcasing digital assets where multiple files need to be neatly organized, previewed, and then downloaded as a package.
 
-<img width="1920" height="911" alt="image" src="https://github.com/user-attachments/assets/098450a9-97cb-42cb-a509-8d58b6b28a6c" />
-
+<img width="1920" height="911" alt="image" src="https://github.com/user-attachments/assets/502d32bf-7edf-4b99-9b3f-fbc64a611d36" />
 
 ## ✨ Features
 
 * **Product Management:** Add new products with a name, description, and status (e.g., free/paid) via the simple admin panel (`admin.html` and `add.php`).
+
+<img width="1920" height="911" alt="image" src="https://github.com/user-attachments/assets/b306cbc0-4561-461c-97fd-008f1b44e6c3" />
+
+
 * **Multi-File Upload:** Supports uploading a main image, multiple **preview images** (for a gallery/slider), and multiple **post images** (the full set of files).
 * **Dynamic Catalog:** Products are fetched from a MySQL database and displayed on the main page (`index.php`).
 * **Product Detail Page:** A dedicated page (`product.php`) displays all media, including an image gallery/slider for the preview images.
+
+<img width="1920" height="911" alt="image" src="https://github.com/user-attachments/assets/51b0c50a-8fd4-4ba1-aab7-345c68d1b22f" />
+
 * **ZIP Download Utility:** Users can download all associated "post" images for a product as a single **ZIP file** using the `download_posts_zip.php` utility.
 
 ## 🛠️ Technology Stack
